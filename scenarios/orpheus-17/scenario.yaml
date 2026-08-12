@@ -1,0 +1,45 @@
+schemaVersion: 1
+id: orpheus-17
+title: ORPHEUS-17
+status: vertical-slice
+
+roles:
+  - id: operations
+    displayName: Operations
+    operatorId: OPERATIONS-01
+    briefing: Maintain physical access systems and report state transitions.
+  - id: archives
+    displayName: Archives
+    operatorId: ARCHIVES-01
+    briefing: Verify historical records and report provenance changes.
+
+initial:
+  caseId: C03
+  factIds:
+    - door-c03
+
+facts:
+  - id: door-c03
+    subject: Door C03
+    canonical:
+      serverOnly: true
+      value: closed
+    projections:
+      - roleId: operations
+        text: "DOOR C03: OPEN"
+      - roleId: archives
+        text: "DOOR C03: SEALED SINCE 11 YEARS"
+
+actions:
+  - id: operations-close-c03
+    actorRoleId: operations
+    intent: door.close
+    targetFactId: door-c03
+    canonicalDecision:
+      factId: door-c03
+      value: closed
+    projectionUpdates:
+      - roleId: operations
+        text: "DOOR C03: CLOSED"
+      - roleId: archives
+        text: "This record was modified 4 seconds ago. AUTHOR: OPERATIONS-01 CREATED: 11 YEARS AGO"

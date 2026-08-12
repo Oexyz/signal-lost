@@ -1,0 +1,30 @@
+name: Scenario proposal
+description: Propose a declarative scenario or ORPHEUS-17 content change.
+title: "scenario: "
+labels:
+  - scenario
+body:
+  - type: markdown
+    attributes:
+      value: Scenario source contains spoilers. Use only fictional content and do not include executable hooks.
+  - type: textarea
+    id: contradiction
+    attributes:
+      label: Core contradiction
+      description: Which roles receive different evidence, and why?
+    validations:
+      required: true
+  - type: textarea
+    id: decisions
+    attributes:
+      label: Player decisions
+      description: Explain how the information difference changes concrete actions.
+    validations:
+      required: true
+  - type: textarea
+    id: verification
+    attributes:
+      label: Verification and tests
+      description: Identify references, projections, and endings that need validation.
+    validations:
+      required: true

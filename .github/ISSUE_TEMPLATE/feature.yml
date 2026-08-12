@@ -1,0 +1,28 @@
+name: Feature proposal
+description: Propose a focused gameplay, accessibility, or engineering change.
+title: "feature: "
+labels:
+  - enhancement
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What player or contributor problem should this solve?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposal
+      description: Describe the smallest useful change.
+    validations:
+      required: true
+  - type: checkboxes
+    id: impact
+    attributes:
+      label: Review areas
+      options:
+        - label: This may affect privacy, browser storage, or external network traffic.
+        - label: This may affect protocol compatibility or information isolation.
+        - label: This may affect accessibility or reduced-motion behavior.

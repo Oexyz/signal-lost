@@ -1,0 +1,41 @@
+:root {
+  color-scheme: dark;
+  --void: #070908;
+  --panel: #0d100e;
+  --line: #30372f;
+  --paper: #e5e8dc;
+  --dim: #899287;
+  --acid: #c7ff2e;
+  --amber: #ffb525;
+  font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+  color: var(--paper);
+  background: var(--void);
+}
+* { box-sizing: border-box; }
+body { min-width: 320px; margin: 0; background: linear-gradient(rgba(255,255,255,.018) 1px, transparent 1px), var(--void); background-size: 100% 4rem; }
+a { color: inherit; }
+a:focus-visible { outline: 2px solid var(--acid); outline-offset: 4px; }
+header { display: flex; justify-content: space-between; align-items: center; min-height: 76px; padding: 0 clamp(1rem, 4vw, 4rem); border-bottom: 1px solid var(--line); }
+.brand { color: var(--paper); font-family: "Arial Narrow", "Helvetica Neue", sans-serif; font-weight: 900; letter-spacing: -.06em; text-decoration: none; }
+.brand i { color: var(--acid); font-style: normal; }
+.node { color: var(--dim); font: .65rem "Cascadia Mono", Consolas, monospace; letter-spacing: .08em; }
+main { display: grid; grid-template-columns: minmax(8rem,.35fr) minmax(0,1fr); max-width: 1100px; min-height: calc(100vh - 200px); margin: 0 auto; padding: clamp(4rem, 9vw, 8rem) 1rem; }
+.index { color: var(--dim); font: .6rem "Cascadia Mono", Consolas, monospace; letter-spacing: .1em; }
+article { max-width: 680px; }
+.eyebrow { color: var(--acid); font: .65rem "Cascadia Mono", Consolas, monospace; letter-spacing: .12em; }
+h1 { max-width: 700px; margin: 1rem 0 3rem; font: 900 clamp(3rem, 8vw, 7rem)/.85 "Arial Narrow", "Helvetica Neue", sans-serif; letter-spacing: -.06em; }
+h2 { margin: 3rem 0 1rem; padding-top: 1rem; border-top: 1px solid var(--line); font: 800 1.3rem "Arial Narrow", "Helvetica Neue", sans-serif; }
+p, li { color: #b9c0b6; font-size: .9rem; line-height: 1.75; }
+ul { padding-left: 1.2rem; }
+.required { display: block; margin: .5rem 0; color: var(--amber); font: .78rem/1.6 "Cascadia Mono", Consolas, monospace; overflow-wrap: anywhere; }
+.notice { margin: 2rem 0; padding: 1rem; border: 1px solid var(--amber); color: var(--amber); font: .7rem/1.6 "Cascadia Mono", Consolas, monospace; }
+footer { display: flex; justify-content: space-between; gap: 2rem; padding: 2.5rem clamp(1rem, 4vw, 4rem); border-top: 1px solid var(--line); color: var(--dim); font: .75rem "Cascadia Mono", Consolas, monospace; }
+footer nav { display: flex; gap: 1.5rem; }
+@media (max-width: 650px) {
+  main { display: block; padding-block: 4rem; }
+  .index { margin-bottom: 2rem; }
+  header .node { display: none; }
+  footer { display: block; }
+  footer nav { margin-top: 2rem; }
+}
+@media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; } }

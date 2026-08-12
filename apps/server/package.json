@@ -1,0 +1,35 @@
+{
+  "name": "@signal-lost/server",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsup --config tsup.config.mjs && tsc -p tsconfig.build.json",
+    "dev": "tsx watch src/main.ts",
+    "start": "node dist/main.js",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@fastify/websocket": "catalog:",
+    "fastify": "catalog:"
+  },
+  "devDependencies": {
+    "@signal-lost/game-engine": "workspace:*",
+    "@signal-lost/protocol": "workspace:*",
+    "@types/node": "24.13.3",
+    "tsup": "8.5.1",
+    "tsx": "4.23.12",
+    "typescript": "6.0.3",
+    "vitest": "4.1.10"
+  }
+}

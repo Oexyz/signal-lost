@@ -1,0 +1,21 @@
+packages:
+  - apps/*
+  - packages/*
+
+injectWorkspacePackages: true
+
+allowBuilds:
+  esbuild: true
+
+catalog:
+  '@fastify/websocket': 11.3.0
+  '@vitejs/plugin-react': 6.0.5
+  drizzle-kit: 0.31.10
+  drizzle-orm: 0.45.2
+  fast-check: 4.9.0
+  fastify: 5.11.3
+  pg: 8.23.0
+  react: 19.2.8
+  react-dom: 19.2.8
+  yaml: 2.9.0
+  zod: 4.4.3

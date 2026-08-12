@@ -1,0 +1,52 @@
+{
+  "name": "signal-lost",
+  "version": "0.0.0",
+  "private": true,
+  "description": "A cooperative asymmetric browser mystery where every operator receives a different version of the same emergency.",
+  "license": "MIT",
+  "type": "module",
+  "packageManager": "pnpm@11.21.0",
+  "engines": {
+    "node": ">=24.18.0 <25",
+    "pnpm": "11.21.0"
+  },
+  "scripts": {
+    "setup": "node scripts/setup.mjs",
+    "dev": "pnpm --stream --parallel --filter @signal-lost/server --filter @signal-lost/web dev",
+    "build": "pnpm -r --if-present build",
+    "lint": "eslint . --max-warnings=0",
+    "typecheck": "tsc --noEmit && pnpm -r --if-present typecheck",
+    "test": "vitest run",
+    "test:unit": "vitest run --exclude tests/e2e/**",
+    "test:e2e": "playwright test",
+    "test:security": "vitest run tests/security",
+    "scenario:validate": "pnpm --filter @signal-lost/scenario-sdk scenario validate scenarios/orpheus-17",
+    "legal:check": "node scripts/audit.mjs legal",
+    "privacy:check": "node scripts/audit.mjs privacy",
+    "assets:check": "node scripts/audit.mjs assets",
+    "brand:check": "node scripts/audit.mjs brand",
+    "smoke:server": "node scripts/runtime-smoke.mjs",
+    "screenshot:readme": "node scripts/capture-readme.mjs",
+    "release:check": "node scripts/audit.mjs release",
+    "check": "node scripts/check.mjs"
+  },
+  "devDependencies": {
+    "@eslint/js": "10.0.1",
+    "@playwright/test": "1.62.1",
+    "@types/node": "24.13.3",
+    "@types/pg": "8.21.0",
+    "@types/react": "19.2.18",
+    "@types/react-dom": "19.2.4",
+    "@types/ws": "8.18.1",
+    "@vitest/coverage-v8": "4.1.10",
+    "eslint": "10.8.1",
+    "fast-check": "4.9.0",
+    "globals": "17.9.0",
+    "tsup": "8.5.1",
+    "tsx": "4.23.12",
+    "typescript": "6.0.3",
+    "typescript-eslint": "8.67.0",
+    "vite": "8.2.1",
+    "vitest": "4.1.10"
+  }
+}

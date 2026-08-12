@@ -1,0 +1,31 @@
+{
+  "name": "@signal-lost/scenario-sdk",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "bin": {
+    "signal-lost-scenario": "./dist/cli.js"
+  },
+  "scripts": {
+    "build": "tsup src/index.ts src/cli.ts --format esm --clean && tsc -p tsconfig.build.json",
+    "scenario": "tsx src/cli.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "yaml": "catalog:",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@types/node": "24.13.3",
+    "tsup": "8.5.1",
+    "tsx": "4.23.12",
+    "typescript": "6.0.3",
+    "vitest": "4.1.10"
+  }
+}
