@@ -19,3 +19,7 @@ Community scenario data is parsed and validated as data. Arbitrary executable sc
 ## ADR-005: One workspace, no task runner yet
 
 pnpm workspace scripts are sufficient for the initial applications and packages. A caching task runner will be considered only after measured build complexity justifies it.
+
+## ADR-006: Direct server-side bundling
+
+The two Node.js build targets use small checked-in esbuild configurations and a separate TypeScript declaration pass. This keeps internal server-only packages inside the deployed bundle, preserves external runtime dependencies, and avoids an unnecessary bundler wrapper and its additional dependency graph.

@@ -20,22 +20,24 @@ The protocol, scenario format, and save compatibility may change before 1.0. The
 
 ORPHEUS-17 is an abandoned deep-space communications station transmitting again after eleven years. Operations may see an open bulkhead while Archives has a record showing that the same bulkhead was permanently sealed. Neither client receives the complete canonical state.
 
-The first vertical slice focuses on one contradiction:
+The current engine slice focuses on one contradiction:
 
 - Operations sees `DOOR C03: OPEN`.
 - Archives sees `DOOR C03: SEALED SINCE 11 YEARS`.
-- Operations submits an intent to close the door.
-- The server decides the canonical result and produces a new role-specific projection.
+- The reducer accepts an Operations intent to close the door.
+- Server-only game logic decides the canonical result and produces a new role-specific projection.
+
+This flow is covered at the engine and protocol boundaries. The invite-only lobby, live WebSocket session, reconnect path, and multi-browser delivery are Phase 1 work; they are not represented as working multiplayer yet.
 
 ## Architecture boundary
 
-Clients send validated intents. Only the server mutates canonical game state, advances revisions, evaluates permissions, and generates player projections. Canonical facts, scenario seeds, private drift values, and other players' evidence must never be placed in browser payloads.
+The implemented schemas and engine enforce the intended trust boundary: clients may describe validated intents, while server-only code mutates canonical game state, advances revisions, evaluates permissions, and generates player projections. Canonical facts, scenario seeds, private drift values, and other players' evidence must never be placed in browser payloads. Wiring that boundary to authenticated live sessions is the next milestone.
 
 The workspace is intentionally small:
 
 ```text
 apps/web              public site and role interfaces
-apps/server           authoritative HTTP and WebSocket service
+apps/server           secured Fastify foundation and health endpoints
 packages/protocol     client-safe versioned wire schemas
 packages/game-engine  deterministic server-only state transitions
 packages/scenario-sdk declarative scenario validation

@@ -1,18 +1,23 @@
 # Architecture
 
-## Current system
+## Current Phase 0 foundation
 
 ```mermaid
 flowchart LR
-    B[Browser] -->|client-safe messages| P[Protocol schemas]
-    B -->|HTTP and WebSocket intents| S[Authoritative server]
-    S --> E[Game engine]
-    S --> V[Scenario validator]
-    E -->|player projection only| S
-    S -->|snapshot or event| B
+    W[Static browser interface]
+    P[Client-safe protocol schemas]
+    S[Fastify security and health foundation]
+    E[Deterministic server-only game engine]
+    V[Declarative scenario validator]
+    T[Unit, property, and browser isolation tests]
+    P --> T
+    S --> T
+    E --> T
+    V --> T
+    W --> T
 ```
 
-The browser never receives the canonical world, server seed, drift values, private decisions, or another player's projection. Protocol packages contain only types that are safe to serialize across the trust boundary.
+The repository currently implements and tests the layers independently. It does not yet expose a gameplay WebSocket route, establish player identity, or deliver live snapshots and events. Protocol packages contain only types that are safe to serialize across the future connection boundary, and projection tests verify that canonical secrets do not enter player DTOs.
 
 ## Dependency direction
 
@@ -25,7 +30,9 @@ scenario-sdk -> declarative scenario data
 
 The web application must not depend on game-engine implementation or scenario source. The engine remains deterministic: a scenario version, seed, prior state, and accepted intent produce a reproducible result.
 
-## Revision and intent flow
+## Target revision and intent flow
+
+The engine and schema rules below are implemented and tested. Connection identity, live transport, session orchestration, and per-player delivery remain Phase 1 work.
 
 1. A connection establishes actor identity outside the action payload.
 2. The client submits an action ID, expected revision, and bounded intent.
@@ -34,4 +41,4 @@ The web application must not depend on game-engine implementation or scenario so
 5. The server regenerates a separate projection for each affected player.
 6. Rejected, stale, or duplicate actions do not mutate state.
 
-Persistence and production hosting are later milestones. This document does not claim that either is currently deployed.
+Gameplay transport, persistence, reconnect, and production hosting are later milestones. This document does not claim that any of them are currently deployed.

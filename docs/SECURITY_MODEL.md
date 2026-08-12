@@ -10,9 +10,9 @@
 
 ## Trust boundaries
 
-The browser is untrusted. A client message is an intent, not state. Actor identity comes from the authenticated connection or session, never from an action payload.
+The browser is untrusted. A client message is an intent, not state. In the target live-session design, actor identity comes from the authenticated connection or session, never from an action payload.
 
-Every incoming message is schema-validated with bounded strings, safe integer revisions, strict object keys, and a known protocol version. Every action is checked against role capability, current phase, resources, expected revision, and prior action IDs.
+Phase 0 defines and tests schema validation with bounded strings, safe integer revisions, strict object keys, and a known protocol version. The engine checks the implemented C03 action against role capability, expected revision, and prior action IDs. Live transport, session identity, broader phase/resource checks, and rate limiting remain roadmap work.
 
 ## Projection isolation
 
