@@ -9,7 +9,7 @@ allowBuilds:
 
 catalog:
   '@fastify/websocket': 11.3.0
-  '@vitejs/plugin-react': 6.0.5
+  '@vitejs/plugin-react': 6.1.0
   drizzle-kit: 0.31.10
   drizzle-orm: 0.45.2
   fast-check: 4.9.0
